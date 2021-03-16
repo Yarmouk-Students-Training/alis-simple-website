@@ -33,7 +33,7 @@ app.get("/about", (req, res) => {
 });
 
 app.get("/opinion", (req, res) => {
-  res.render("opinion", { title: "write your opinion" });
+  res.render("opinion", { title: "opinion" });
 });
 
 // 404 page
