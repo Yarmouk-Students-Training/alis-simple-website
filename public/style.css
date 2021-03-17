@@ -96,3 +96,9 @@ textarea {
   font-size: 1.2em;
   cursor: pointer;
 }
+h6 {
+  margin-top: 9px;
+  padding: 0;
+  text-decoration: none;
+  color: rgb(240, 38, 38);
+}

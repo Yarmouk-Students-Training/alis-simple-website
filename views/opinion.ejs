@@ -5,10 +5,10 @@
     <%- include("./partials/nav.ejs") %>
 
     <div class="create-blog content">
-      <form>
+      <form action="/feedbacks" method="POST">
         <label for="title">Name:</label>
         <input type="text" id="title" name="title" required />
-        <label for="snippet">email:</label>
+        <label for="snippet">feedback:</label>
         <input type="text" id="snippet" name="snippet" required />
         <label for="body">your opinion:</label>
         <textarea id="body" name="body" required></textarea>
