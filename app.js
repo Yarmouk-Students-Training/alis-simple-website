@@ -1,11 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
-
+const Feed = require("./models/feed");
 // express app
 const app = express();
-
-// listen for requests
 
 const URI =
   "mongodb+srv://alizarraq:ali1234@cluster0.qrmo3.mongodb.net/nodeJ?retryWrites=true&w=majority";
@@ -17,35 +15,71 @@ mongoose
 // register view engine
 app.set("view engine", "ejs");
 
-// listen for requests
-app.listen(3000);
+// middleware & static files
 app.use(express.static("public"));
+app.use(morgan("dev"));
+// app.use((req, res, next) => {
+//   res.locals.path = req.path;
+//   next();
+// });
 
-// app.set('views', 'myviews');
+// mongoose & mongo tests
+app.get("/opinion", (req, res) => {
+  const feed = new Feed({
+    title: "new opinion",
+    snippet: "your feedback",
+    body: "more about your opinion",
+  });
+  feed
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+app.get("/all-opinions", (req, res) => {
+  Feed.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+// app.get("/single-opinion", (req, res) => {
+//   Blog.findById("605218041af9221ee7336401")
+//     .then((result) => {
+//       res.send(result);
+//     })
+//     .catch((err) => {
+//       console.log(err);
+//     });
+// });
 
 app.get("/", (req, res) => {
-  const feedbacks = [
-    {
-      title: "mahmmed",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "sara",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-    {
-      title: "loui",
-      snippet: "Lorem ipsum dolor sit amet consectetur",
-    },
-  ];
-  res.render("index", { title: "Home", feedbacks });
+  res.redirect("/feedbacks");
 });
+
 app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
+
 app.get("/opinion", (req, res) => {
   res.render("opinion", { title: "opinion" });
 });
+app.get("/feedbacks", (req, res) => {
+  Feed.find()
+    .sort({ createdAt: -1 })
+    .then((result) => {
+      res.render("index", { feedbacks: result, title: "All blogs" });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
 // 404 page
 app.use((req, res) => {
   res.status(404).render("404", { title: "404" });

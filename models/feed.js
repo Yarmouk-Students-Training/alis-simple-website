@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const schema = mongoose.Schema;
+const Schema = mongoose.Schema;
 
 const feedSchema = new Schema(
   {
@@ -20,5 +20,4 @@ const feedSchema = new Schema(
 );
 
 const Feed = mongoose.model("Feed", feedSchema);
-
 module.exports = Feed;
