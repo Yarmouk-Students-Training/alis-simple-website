@@ -17,14 +17,14 @@ app.set("view engine", "ejs");
 
 // middleware & static files
 app.use(express.static("public"));
+app.use(express.urlencoded({ extended: true }));
 app.use(morgan("dev"));
-// app.use((req, res, next) => {
-//   res.locals.path = req.path;
-//   next();
-// });
+app.use((req, res, next) => {
+  res.locals.path = req.path;
+  next();
+});
 
-// mongoose & mongo tests
-app.get("/opinion", (req, res) => {
+app.get("/add-opinion", (req, res) => {
   const feed = new Feed({
     title: "new opinion",
     snippet: "your feedback",
@@ -48,15 +48,15 @@ app.get("/all-opinions", (req, res) => {
       console.log(err);
     });
 });
-// app.get("/single-opinion", (req, res) => {
-//   Blog.findById("605218041af9221ee7336401")
-//     .then((result) => {
-//       res.send(result);
-//     })
-//     .catch((err) => {
-//       console.log(err);
-//     });
-// });
+app.get("/single-opinion", (req, res) => {
+  Feed.findById("605218041af9221ee7336401")
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 app.get("/", (req, res) => {
   res.redirect("/feedbacks");
@@ -66,9 +66,11 @@ app.get("/about", (req, res) => {
   res.render("about", { title: "About" });
 });
 
+// feeedback roots
 app.get("/opinion", (req, res) => {
-  res.render("opinion", { title: "opinion" });
+  res.render("opinion", { title: "Create a new opinion" });
 });
+
 app.get("/feedbacks", (req, res) => {
   Feed.find()
     .sort({ createdAt: -1 })
@@ -78,6 +80,21 @@ app.get("/feedbacks", (req, res) => {
     .catch((err) => {
       console.log(err);
     });
+});
+app.post("/feedbacks", (req, res) => {
+  const feed = new Feed(req.body);
+
+  feed
+    .save()
+    .then((result) => {
+      res.redirect("/feedbacks");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+app.get("/opinion", (req, res) => {
+  res.render("opinion", { title: "opinion" });
 });
 
 // 404 page
