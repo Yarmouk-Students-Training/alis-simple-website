@@ -6,14 +6,19 @@
 
     <div class="blogs content">
       <h2>All feedbacks</h2>
-      <% if (feedbacks.length > 0) { %> <% feedbacks.forEach(feedback => { %>
 
-      <h3 class="title"><%= feedback.title %></h3>
-      <p class="snippet"><%= feedback.snippet %></p>
-      <a href=""><h6>read more</h6></a>
+      <% if (feedbacks.length > 0) { %> <% feedbacks .forEach(feedback => { %>
+      <div class="a" class="single">
+        <h3 class="title"><%= feedback.title %></h3>
+        <p class="snippet"><%= feedback.snippet %></p>
+        <a class="read" href="/feedbacks/<%= feedback._id %>"
+          ><h6>read more</h6></a
+        >
+      </div>
 
       <% }) %> <% } else { %>
-      <p>There are no feedbacks to display...</p>
+      <p>There are no feedbacks...</p>
+      <a href="/feedbacks/write"> <h4>write a feedback</h4></a>
       <% } %>
     </div>
 

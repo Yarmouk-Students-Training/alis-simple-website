@@ -4,10 +4,9 @@ body {
   margin: 20px auto;
   padding: 0 20px;
   font-family: "Noto Serif", serif;
-  background: linear-gradient(to top left, #1a502e, #7dd56f);
+  background: linear-gradient(to top left, #557460, #9efcba);
   color: #333;
   line-height: 1.5;
-  height: 100vh;
   position: relative;
 }
 p,
@@ -19,7 +18,7 @@ ul {
   margin: 0;
   padding: 0;
   text-decoration: none;
-  color: rgb(245, 238, 238);
+  color: #222;
 }
 
 /* nav & footer styles */
@@ -45,11 +44,11 @@ nav h1 {
 }
 nav p,
 nav a {
-  color: rgb(218, 214, 214);
+  color: #777;
   font-weight: 300;
 }
 footer {
-  color: rgb(209, 207, 207);
+  color: #777;
   text-align: center;
   margin: 80px auto 20px;
 }
@@ -65,8 +64,37 @@ h3 {
 }
 
 /* index styles */
+.blogs .a {
+  display: block;
+  margin: 40px 0;
+  padding-left: 30px;
+  border-left: 6px solid crimson;
+}
+.blogs a:hover h6 {
+  color: rgb(26, 33, 75);
+}
+a:hover h4 {
+  color: rgb(26, 33, 75);
+}
+.nav a:hover {
+  color: crimson;
+}
 
 /* details styles */
+.details {
+  position: relative;
+}
+.delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 50%;
+  padding: 8px;
+}
+.delete:hover {
+  cursor: pointer;
+  box-shadow: 1px 2px 3px rgba(0, 0, 0, 0.2);
+}
 
 /* create styles */
 .create-blog form {
@@ -96,9 +124,42 @@ textarea {
   font-size: 1.2em;
   cursor: pointer;
 }
+h4 {
+  color: crimson;
+}
 h6 {
-  margin-top: 9px;
-  padding: 0;
-  text-decoration: none;
-  color: rgb(240, 38, 38);
+  color: crimson;
+}
+.home {
+  color: crimson;
+}
+h3 a:hover {
+  color: rgb(26, 33, 75);
+}
+
+.fa:hover {
+  color: #d5d5d5;
+}
+.fa-facebook {
+  color: #3b5998;
+}
+.fa-twitter {
+  color: #00aced;
+}
+.fa-google {
+  color: #dd4b39;
+}
+.fa-youtube {
+  color: #bb0000;
+}
+.fa-instagram {
+  color: #517fa4;
+}
+.social a {
+  font-size: 40px;
+  padding: 7px;
+  margin-left: 150px;
+}
+.connect {
+  text-align: center;
 }
