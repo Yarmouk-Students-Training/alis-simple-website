@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const feedSchema = new Schema(
+const feedbackSchema = new Schema(
   {
     title: {
       type: String,
@@ -19,5 +19,5 @@ const feedSchema = new Schema(
   { timestamps: true }
 );
 
-const Feed = mongoose.model("Feed", feedSchema);
-module.exports = Feed;
+const Feedback = mongoose.model("Feedback", feedbackSchema);
+module.exports = Feedback;
