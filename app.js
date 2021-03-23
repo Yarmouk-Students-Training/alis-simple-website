@@ -1,7 +1,7 @@
 const { sequelize } = require("./models");
 
 async function main() {
-  await sequelize.authenticate();
+  await sequelize.sync({ force: true });
 }
 
 main();
