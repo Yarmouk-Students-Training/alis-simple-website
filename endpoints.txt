@@ -1,5 +1,5 @@
 ** the user endpoints **
-1-(mywebsite/user) → a post request should send a JSON return to create a new user
+1-(mywebsite/user#new) → a post request should send a JSON return to create a new user
 
 2-(mywebsite/users/user_id) → a get request should return a JSON object with for a specific user
 
@@ -17,7 +17,7 @@
 
 2-(mywebsite/posts) → a get request should send a JSON return for all the posts
 
-3-(mywebsite/user/user_id/posts) → a get request should send a JSON return for all the posts for a specific user
+3-(mywebsite/posts/user/user_id) → a get request should send a JSON return for all the posts for a specific user
 
 4-(mywebsite/posts/post_id) → a put request should send a JSON return to edit a post
 
@@ -25,13 +25,13 @@
 
 ** the comment endpoints **
 
-1-(mywebsite/posts/post_id/comments) → a post request should send a JSON return to create a new comment
+1-(mywebsite/posts/post_id/comment) → a post request should send a JSON return to create a new comment
 
 2-(mywebsite/posts/post_id/comments) → a get request should send a JSON return for all the comments for a specific post
 
-3-(mywebsite/posts/post_id/comments/comment_id) → a put request should send a JSON return to edit a specific comment
+3-(mywebsite/api/v1/posts/post_id/comment/comment_id) → a put request should send a JSON return to edit a specific comment
 
-4-(mywebsite/posts/post_id/comments/comment_id) → a delete request should send a JSON return fo delete a specific comment
+4-(mywebsite/posts/post_id/comment/comment_id) → a delete request should send a JSON return fo delete a specific comment
 
 ** the reaction rndpoints **
 
