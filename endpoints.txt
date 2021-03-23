@@ -24,8 +24,8 @@
 5-(mywebsite/posts/post_id) → a delete request should send a JSON return to delete post
 
 ** the comment endpoints **
-1-(mywebsite/posts/post_id/comments) → a post request should send a JSON return to create a new comment
 
+1-(mywebsite/posts/post_id/comments) → a post request should send a JSON return to create a new comment
 
 2-(mywebsite/posts/post_id/comments) → a get request should send a JSON return for all the comments for a specific post
 
