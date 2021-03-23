@@ -1,0 +1,47 @@
+** the user endpoints **
+1-(mywebsite/user) → a post request should send a JSON return to create a new user
+
+2-(mywebsite/users/user_id) → a get request should return a JSON object with for a specific user
+
+3-(mywebsite/users/user_id/profile_pic) → a get request should return a JSON object for a specific user picture
+
+4-(mywebsite/users/user_id) → a put request should return a JSON object to edit the user info
+
+5-(mywebsite/users/user_id) → a delete request should return a JSON object to delete a user
+
+
+
+** the post endlines **
+
+1-(mywebsite/post) → a post request should send a JSON return to create a new post
+
+2-(mywebsite/posts) → a get request should send a JSON return for all the posts
+
+3-(mywebsite/user/user_id/posts) → a get request should send a JSON return for all the posts for a specific user
+
+4-(mywebsite/posts/post_id) → a put request should send a JSON return to edit a post
+
+5-(mywebsite/posts/post_id) → a delete request should send a JSON return to delete post
+
+** the comment endpoints **
+1-(mywebsite/posts/post_id/comments) → a post request should send a JSON return to create a new comment
+
+
+2-(mywebsite/posts/post_id/comments) → a get request should send a JSON return for all the comments for a specific post
+
+3-(mywebsite/posts/post_id/comments/comment_id) → a put request should send a JSON return to edit a specific comment
+
+4-(mywebsite/posts/post_id/comments/comment_id) → a delete request should send a JSON return fo delete a specific comment
+
+** the reaction rndpoints **
+
+1-(mywebsite/posts/post_id/rection) → a post request should send a JSON return to create a new reaction
+
+2-(mywebsite/posts/post_id/reations) → a get request should send a JSON return for all the reations for a specific post
+
+3-(mywebsite/posts/post_id/reation/reation_id) → a put request should send a JSON return to edit a specific reation
+
+4-(mywebsite/posts/post_id/comments/reation_id) → a delete request should send a JSON return fo delete a specific reation
+
+
+
