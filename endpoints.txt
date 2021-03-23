@@ -1,5 +1,5 @@
 ** the user endpoints **
-1-(mywebsite/user#new) → a post request should send a JSON return to create a new user
+1-(mywebsite/user/create) → a post request should send a JSON return to create a new user
 
 2-(mywebsite/users/user_id) → a get request should return a JSON object with for a specific user
 
