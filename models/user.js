@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate({ post, comment, reactions, friendship }) {
       this.hasMany(post);
-      // this.hasMany(comment);
+      this.hasMany(comment);
       this.hasMany(reactions);
       this.belongsToMany(this, {
         through: friendship,

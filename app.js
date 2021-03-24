@@ -1,7 +1,26 @@
-const { sequelize } = require("./models");
+const { sequelize, User } = require("./models");
+const express = require("express");
+const userRoutes = require("./routes/userRoutes");
+const postRoutes = require("./routes/postRoutes");
+const commentRoutes = require("./routes/commentRoutes");
+const reactRoutes = require("./routes/reactRoutes");
 
-async function main() {
-  await sequelize.sync({ force: true });
-}
+const app = express();
 
-main();
+app.listen({ port: 3000 }, async () => {
+  console.log("server is up on port 3000");
+  await sequelize.sync({ alert: true });
+  console.log("database synced");
+});
+
+// routes
+app.get("/", (req, res) => {});
+
+// user routes=
+app.use("/user", userRoutes);
+// post routes=
+app.use("/post", postRoutes);
+// user routes=
+app.use("/comment", commentRoutes);
+// user routes=
+app.use("/react", reactRoutes);
