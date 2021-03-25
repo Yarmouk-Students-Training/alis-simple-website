@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   post.init(
     {
-      body: {
+      content: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -23,8 +23,9 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       post_id: {
-        type: DataTypes.STRING,
+        type: DataTypes.UUID,
         primaryKey: true,
+        defaultValue: DataTypes.UUID4,
       },
     },
     {

@@ -1,8 +1,22 @@
 const express = require("express");
 const router = express.Router();
+const modele = require("../models");
 
-router.post("/create", (req, res) => {
-  console.log("");
+router.use(express.json());
+
+router.post("/create", async (req, res) => {
+  const { userEmail, content, post_id } = req.body;
+  try {
+    const user = await modele.user.findOne({ where: { email: userEmail } });
+    const post = await modele.post.create({
+      content,
+      post_id,
+    });
+    return res.json(post);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
 });
 router.post("/new", (req, res) => {
   console.log("");
