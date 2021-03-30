@@ -54,7 +54,7 @@ app.post("/login", async (req, res) => {
     {
       const acces =await jwt.sign({email},process.env.ACCESS_TOKEN,{expiresIn:"10m"})
       const refresh = await jwt.sign({email},process.env.REFRESH_TOKEN,{expiresIn:"50d"})
-      await modele.authtoken.create({refresh})
+      await modele.authToken.create({refresh})
         return res.json({acces,refresh})}
       
       else{
