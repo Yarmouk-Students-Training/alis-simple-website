@@ -5,13 +5,10 @@ const modele = require("../models");
 router.use(express.json());
 
 router.post("/create", async (req, res) => {
-  const { userEmail, content, post_id } = req.body;
+  const { email, post_id, content } = req.body;
   try {
-    const user = await modele.user.findOne({ where: { email: userEmail } });
-    const post = await modele.post.create({
-      content,
-      post_id,
-    });
+    const post = await modele.post.create({ email, post_id, content });
+
     return res.json(post);
   } catch (err) {
     console.log(err);
@@ -21,17 +18,69 @@ router.post("/create", async (req, res) => {
 router.post("/new", (req, res) => {
   console.log("");
 });
-router.get("/posts", (req, res) => {
-  console.log("");
+router.get("/all", (req, res) => {
+  router.get("/all", async (req, res) => {
+    try {
+      const posts = await modele.post.findAll();
+      return res.json(posts);
+    } catch (err) {
+      console.log(err);
+      return res.status(500).json(err);
+    }
+  });
 });
-router.get("/posts/user/user_id", (req, res) => {
-  console.log("");
+router.get("/:email", async (req, res) => {
+  try {
+    const email = req.params.email;
+    const posts = await modele.post.findAll({ where: { email } });
+    if (posts.length == 0) {
+      return res.json("no posts");
+    }
+    return res.json(posts);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
 });
-router.put("/post_id", (req, res) => {
-  console.log("");
+
+router.get("/:post_id", async (req, res) => {
+  const post_id = req.params.post_id;
+  try {
+    const post = await modele.post.findByPk(post_id);
+
+    return res.json(post);
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json(err);
+  }
 });
-router.delete("/post_id", (req, res) => {
-  console.log("");
+router.put("/:post_id", async (req, res) => {
+  const post_id = req.params.post_id;
+  const { content } = req.body;
+  try {
+    const post = await modele.post.findByPk(post_id);
+    post.content = content;
+    return res.json(post);
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json(err);
+  }
+});
+router.delete("/:post_id", async (req, res) => {
+  const post_id = req.params.post_id;
+
+  try {
+    await modele.post.destroy({
+      where: { post_id },
+    });
+
+    return res.json("deleted");
+  } catch (err) {
+    console.log(err);
+
+    return res.status(500).json(err);
+  }
 });
 
 module.exports = router;

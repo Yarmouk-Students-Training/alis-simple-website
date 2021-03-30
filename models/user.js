@@ -1,6 +1,5 @@
 "use strict";
 const { Model } = require("sequelize");
-const reactions = require("./reactions");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -9,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ post, comment, reactions, friendship }) {
-      this.hasMany(post);
-      this.hasMany(comment);
-      this.hasMany(reactions);
+      this.hasMany(post, { foreignKey: "email" });
+      this.hasMany(comment, { foreignKey: "email" });
+      this.hasMany(reactions, { foreignKey: "email" });
       this.belongsToMany(this, {
         through: friendship,
         as: "firstuser",
@@ -51,6 +50,10 @@ module.exports = (sequelize, DataTypes) => {
         validate: {
           notEmpty: true,
         },
+      },
+      gender: {
+        allowNull: false,
+        type: DataTypes.ENUM("female", "male"),
       },
       picture: {
         type: DataTypes.BLOB,

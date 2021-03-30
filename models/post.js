@@ -8,9 +8,9 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate({ user, comment, reactions }) {
-      this.belongsTo(user);
-      this.hasMany(comment);
-      this.hasMany(reactions);
+      this.belongsTo(user, { foreignKey: "email" });
+      this.hasMany(comment, { foreignKey: "post_id" });
+      this.hasMany(reactions, { foreignKey: "post_id" });
     }
   }
   post.init(
@@ -23,9 +23,15 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       post_id: {
-        type: DataTypes.UUID,
         primaryKey: true,
-        defaultValue: DataTypes.UUID4,
+        unique: true,
+        type: DataTypes.UUID,
+        allowNull: false,
+        defaultValue: DataTypes.UUIDV4,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
       },
     },
     {
